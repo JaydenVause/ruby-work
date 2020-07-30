@@ -3,7 +3,7 @@ print "To start give me a string to encrypt:"
 string = gets.chomp
 print "great! Now give us a key value to encrypt your message eg. 10 or -10 "
 key = gets.chomp.to_i
-require 'pry' ;
+
 
 def ceaser_cypher(string, key)
     array = string.split("") 
