@@ -4,7 +4,7 @@ string = gets.chomp
 print "great! Now give us a key value to encrypt your message eg. 10 or -10 "
 key = gets.chomp.to_i
 require 'pry' ;
-# holds the arrays for alpha and numerics
+
 def ceaser_cypher(string, key)
     array = string.split("") 
     alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l",
@@ -12,7 +12,7 @@ def ceaser_cypher(string, key)
 
     numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     
-#joins new arrays
+
     if key > 0
         new_alpha = alphabet+alphabet.slice(0, key)
         new_num = numbers+numbers.slice(0, key)
@@ -22,15 +22,15 @@ def ceaser_cypher(string, key)
         while i > key do
             z += 1
             i -= 1
-            x = alphabet.reverse.slice(0,z)
-            y = numbers.reverse.slice(0,z)  
+            sliced_alpha = alphabet.reverse.slice(0,z)
+            sliced_num = numbers.reverse.slice(0,z)  
         end
-        new_alpha = x.reverse + new_alpha
-        new_num = y.reverse + new_num
+        new_alpha = sliced_alpha.reverse + new_alpha
+        new_num = sliced_num.reverse + new_num
     end   
     
     print "the message is : "
-   #loop to go through give string & cases to print out letter/char/num in the case they match
+   
     for letter in array                  
         if numbers.include?(letter)
            i = 0
