@@ -6,7 +6,7 @@ key = gets.chomp.to_i
 
 
 def ceaser_cypher(string, key)
-    #cypher alphabet arrays
+    #cypher alphabet/numeric arrays
     array = string.split("")
     
     alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l",
