@@ -6,13 +6,15 @@ key = gets.chomp.to_i
 
 
 def ceaser_cypher(string, key)
-    array = string.split("") 
+    #cypher alphabet arrays
+    array = string.split("")
+    
     alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l",
             "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
     numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     
-
+      #cypher slice functions if function requires items - or + what the array provides
     if key > 0
         new_alpha = alphabet+alphabet.slice(0, key)
         new_num = numbers+numbers.slice(0, key)
@@ -30,7 +32,7 @@ def ceaser_cypher(string, key)
     end   
     
     print "the message is : "
-   
+    #loops to determine what the strings are and how to split it from num/alpha/or char
     for letter in array                  
         if numbers.include?(letter)
            i = 0
@@ -61,7 +63,7 @@ def ceaser_cypher(string, key)
         end
     end
 end
-
+#controlling user input on the terms they give a valid input or not
 if string.length <= 0 
     puts "error"
 else
