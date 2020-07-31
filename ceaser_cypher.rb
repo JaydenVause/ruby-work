@@ -13,48 +13,55 @@ def ceaser_cypher(string, key)
             "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
     numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-    
+    new_alpha = alphabet
+    new_num = numbers
+    alpha_array_ext = [] 
+    num_array_ext = [] 
       #cypher slice functions if function requires items - or + what the array provides
     if key > 0
-        new_alpha = alphabet+alphabet.slice(0, key)
-        new_num = numbers+numbers.slice(0, key)
-    else
         i = 0
-        z = 0
+        while i < key do
+            i += 1
+            alphabet.push(alphabet[i-1])
+            numbers.push(numbers[i-1])
+        end 
+     else
+        i = 0
         while i > key do
-            z += 1
             i -= 1
-            sliced_alpha = alphabet.reverse.slice(0,z)
-            sliced_num = numbers.reverse.slice(0,z)  
-        end
-        new_alpha = sliced_alpha.reverse + new_alpha
-        new_num = sliced_num.reverse + new_num
+            x = alphabet.length + i
+            y = numbers.length + i
+
+            alphabet.unshift(alphabet[i])
+            numbers.unshift(numbers[i])
+        end 
     end   
-    
+    p alphabet
+    p numbers
     print "the message is : "
     #loops to determine what the strings are and how to split it from num/alpha/or char
     for letter in array                  
         if numbers.include?(letter)
            i = 0
-            while i < new_num.length do
-                if new_num[i] == letter
-                    print new_num[i+key]
+            while i < numbers.length do
+                if numbers[i] == letter
+                    print numbers[i+key]
                 end
                 i += 1
             end
-        elsif !new_alpha.include?(letter) && new_alpha.include?(letter.downcase)
+        elsif !alphabet.include?(letter) && alphabet.include?(letter.downcase)
                 i = 0
-                while i < new_alpha.length do
-                    if new_alpha[i] == letter.downcase
-                        print new_alpha[i+key].upcase
+                while i < alphabet.length do
+                    if alphabet[i] == letter.downcase
+                        print alphabet[i+key].to_s.upcase
                     end
                     i += 1
                 end
-        elsif  new_alpha.include?(letter.downcase)           
+        elsif  alphabet.include?(letter.downcase)           
             i = 0
-            while i < new_alpha.length do
-                if new_alpha[i] == letter
-                    print new_alpha[i+key]
+            while i < alphabet.length do
+                if alphabet[i] == letter
+                    print alphabet[i+key]
                 end
                 i += 1
             end
@@ -62,7 +69,7 @@ def ceaser_cypher(string, key)
             print letter
         end
     end
-end
+ end
 #controlling user input on the terms they give a valid input or not
 if string.length <= 0 
     puts "error"
