@@ -1,0 +1,16 @@
+--- !ruby/object:Game
+words: !ruby/object:File {}
+code:
+- b
+- r
+- u
+- t
+- e
+hint:
+- "-"
+- "-"
+- "-"
+- "-"
+- "-"
+guesses: 5
+file_name: save.yml
