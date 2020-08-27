@@ -1,0 +1,18 @@
+def return_fib(n, arry=[0, 1])
+  n -= 2
+  n.times do 
+    arry << arry[-1] + arry[-2]
+  end
+  print arry
+end
+
+return_fib 8
+
+
+def fib_recursion(n, arry=[0,1])
+ return arry if arry.length == n
+ arry << arry[-1] + arry[-2]
+ fib_recursion(n,arry)
+end
+
+print fib_recursion(8)
