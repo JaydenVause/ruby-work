@@ -1,14 +1,10 @@
 def merge( left, right, result=[])
-  left.each_with_index do |l_item, l_idx|
-  right.each_with_index do |r_item, r_idx|
-    if r_item < l_item
-      result << right.slice!(r_idx)
-    end
+
+  while !left.empty? && !right.empty?
+    left[0] > right[0]? result << right.slice!(0) : result << left.slice!(0)
   end
-  result << l_item
-  end
-  right.each{|r_itm| result << r_itm}
-return result
+ 
+return result.concat(left).concat(right)
 end
 
 def merge_sort(array, result =[])
@@ -22,4 +18,9 @@ def merge_sort(array, result =[])
   return result
 end
 
-p merge_sort [4, 2, 3, 4, 5, 6, 7, 9, 8]
+p merge_sort [4, 2, 3, 4, 5, 6, 7, 9,8,3,2,1,2,4,2,1]
+
+
+
+
+
