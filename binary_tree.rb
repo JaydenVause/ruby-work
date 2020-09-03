@@ -81,13 +81,15 @@ class Tree
   end
 # find the lowest value
   def find_successor(node)
+    return nil if node.nil?
+    node = node.left if node.left 
     if node.left ==nil and node.right == nil
       return node
     end 
-    if node.left
-    find_successor(node.left)
-    else 
+    if node.right
       find_successor(node.right)
+    elsif node.left
+      find_successor(node.left)
     end
   end
   # delete node in a tree
@@ -148,15 +150,128 @@ class Tree
         p z.value
       end
   end
+#  get the depth of a node
+  def node_depth(value, node=@root, n=0)  
+    # return at the bottom of right
+    return nil if node.nil?  
+    # plus 1 each time
+    if value < node.value
+      if node.left
+        n += 1
+        node_depth(value, node.left, n) 
+      else
+        nil 
+      end
+    elsif value > node.value
+      if node.right
+        n += 1
+        node_depth(value, node.right, n) 
+      else
+        nil
+      end
+    elsif value == node.value
+      return n
+    end
+  end
 
+  def calc_low_point(node, depth=0)
+    return nil if node.nil? 
+    if node.left ==nil and node.right == nil
+      return depth
+    elsif node.right
+      depth += 1
+      calc_low_point(node.right, depth)
+    elsif node.left
+      depth += 1
+      calc_low_point(node.left, depth)
+    end
+  end
 
-  # end of class
+  def tree_max_depth(value)
+    left_max = calc_low_point(@root.left)
+    right_max = calc_low_point(@root.right)
+    left_max > right_max ?  max_depth = left_max  : max_depth = right_max
+    max_depth +=1 
+  end
+
+#Get tree Preorder (Root, Left, Right) 
+  def pre_order(node = @root, array = [])
+    return if node == nil
+    array << node.value
+    pre_order(node.left, array)
+    pre_order(node.right, array)
+    return array
+  end
+
+  #Get tree Inorder (Left, Root, Right) 
+  def in_order(node = @root, array = [])
+    return if node == nil
+    in_order(node.left, array)
+    array << node.value
+    in_order(node.right, array)
+    return array
+  end
+# rebalance tree
+  def rebalance(node = @root , array = [])
+    array = in_order
+    @root = build_tree(merge_sort(array.uniq))
+  end
+
+  # Postorder (Left, Right, Root) 
+  def post_order(node= @root, array = [])
+    return if node == nil
+    post_order(node.left, array)
+    post_order(node.right, array)
+    array << node.value
+    return array
+  end
+# find height of a node
+  def find_height(node)
+    return -1 if node == nil
+    left_height = find_height(node.left)
+    right_height = find_height(node.right)
+    left_height >= right_height ? max_height = left_height : max_height = right_height 
+    return max_height += 1 
+  end
+# check if tree is balanced
+  def check_balanced(node = @root)
+    return true if node.nil?
+    left = find_height(node.left)
+    right = find_height(node.right)
+    if ((left - right).abs <= 1 && check_balanced(node.left) && check_balanced(node.right))
+      return true
+    else 
+      return false
+    end
+  end
+
 end
 
-my_tree = Tree.new([1,2,3,4,5,6,7,8,9])
 
+=begin
+///////////////////SIMPLE_DRIVER_SCRIPT///////////////////////////
+==================================================================
+*    Check if the binary tree is working and balanced 
+=end
+
+# 1. Create a binary search tree from an array of random numbers (`Array.new(15) { rand(1..100) }`)
+my_tree = Tree.new([1,2,3,4,5,6,7,8,9,10,11,12,13])
+# 2. Confirm that the tree is balanced by calling `#balanced?`
+p my_tree.check_balanced
+# 3. Print out all elements in level, pre, post, and in order
+p my_tree.in_order
+p my_tree.post_order
+p my_tree.post_order
+# 4. try to unbalance the tree by adding several numbers > 100
+my_tree.insert_node(1000)
+my_tree.insert_node(145000)
+my_tree.insert_node(10003232)
 my_tree.pretty_print
-my_tree.level_order
-
-
- 
+# 5. Confirm that the tree is unbalanced by calling `#balanced?`
+p my_tree.check_balanced
+# 6. Balance the tree by calling `#rebalance`
+my_tree.rebalance
+my_tree.pretty_print
+# 7. Confirm that the tree is balanced by calling `#balanced?`
+p my_tree.check_balanced
+# 8. Print out all elements in level, pre, post, and in order
