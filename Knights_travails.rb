@@ -44,7 +44,7 @@ class Knight
 
       new_moves = generate_moves(node)   
       new_moves.each do |vertex|
-      vertex.parent == node
+      vertex.parent = node
       que << vertex
       end
 
