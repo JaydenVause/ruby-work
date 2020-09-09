@@ -102,32 +102,6 @@ end
 end
 
 game = Game.new
-# game.display_hint_ui
-# game.get_player_input
-# game.does_include?(game.get_player_input)
 
-# x =  game.to_json
-# p x
-# puts " "
-# p game.from_json(x)
- 
-
-# def save_game(file_name, game_state)
-#   File.open(file_name, "w"){
-#     |file|
-    
-#     file.write(game_state.to_yaml)
-#   }
-# end
-
-# def load_game(file_name, game)
-#  contents = YAML.load(File.read(file_name))
-#    game = contents
-#  end
-
-# save_game(file_name, game)
-# game = load_game(file_name, game)
-
-# puts YAML::load(serialized_cla= 
 
 game.run_game
