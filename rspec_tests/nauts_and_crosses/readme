@@ -1,0 +1,31 @@
+# PSUDO CODE CONNECT FOUR
+=begin
+1. We want to make a game of connect four                                  **Object Game**
+2. it will have two players                                                ** Object 2x Players**
+3. it will have 6 rows UP and 7 columns wide !                             ** OBJECT GRID BOARD 6*7 Nodes*
+VVVV players will take turns until the game is over                          **Function player moves**
+5. a player choses a column to place a chip                                ** need to make columns based off what we need**
+6. program goes through the selected column to find the end                ** function find bottom of column*
+    if that node hasnt got a chip already                                   -condition-
+        change the chip                                                     
+        check win condition                                             **function win conditions**    
+            CHECK IF IT HAS FOUR IN A ROW (DIAGONAL VERTICAL HORIZONTAL)
+    else if it has a chip (is already taken position)                   **recursion ? repeating until its not taken or is above the rowcount**
+        if there is no next row                                         
+            return and ask for another input
+        else
+            it needs to find the next row repeate until it finds empty place
+        end
+    end
+                    |O|O|O|O|O|O|O|     7 columns              \  |  /
+                    |O|O|O|O|O|O|O|     6 rows       ^Y         -----
+                    |O|O|O|O|O|O|O|                        <---(__O__)---> our node needs to check in dif directions 8 DIRECTIONS <<
+                    |O|O|O|O|O|O|O|                            /  |   \        left x-1 y-0  
+                    |O|O|O|O|O|O|O|                                            lower left x-1 y-1
+                    |O|O|O|O|O|O|O|                      X>               upper left x-1 y+1
+                     1 2 3 4 5 6 7                                        up x + 0 Y + 1 
+                                                                          upper right x+1 Y+1
+                                                                          right x+1 y+0
+                                                                          down x + 0 y-1
+                                                                         lower right x+1 Y-1
+=end
