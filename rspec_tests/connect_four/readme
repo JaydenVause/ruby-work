@@ -29,3 +29,20 @@ VVVV players will take turns until the game is over                          **F
                                                                           down x + 0 y-1
                                                                          lower right x+1 Y-1
 =end
+
+
+  def check_horizontal_win(node,count = 0)
+      # return true if count == 4
+      # return count if !node.exist?
+      # return false if node ! exist
+      # return false if edge isnt what we need
+      # get the node
+      # check each of the nodes left right edges
+      # if node left edge == same player key
+      # left edge count += 1
+      # check new left left edge
+      # return if not the right edge on that edge
+      # check that nodes right edge
+      # do same check if it is what we need +1 count
+      # else stop 
+    end
